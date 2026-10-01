@@ -1,0 +1,15 @@
+Spark performance depends on partitioning, parallelism, serialization, memory usage, shuffle behavior, and the amount of data processed.
+
+Partitioning determines how data is distributed across tasks. Too few partitions can reduce parallelism, while too many small partitions can increase scheduling overhead.
+
+A shuffle occurs when Spark needs to redistribute data across executors. Large shuffles can become expensive because data may need to be serialized, transferred across the network, and written to disk.
+
+Broadcast joins can improve performance when one side of a join is small enough to be distributed to executors. This can avoid a large shuffle of the smaller dataset.
+
+Caching or persisting a DataFrame can help when the same computed dataset is reused multiple times. However, caching consumes executor memory and should be used selectively.
+
+Spark executors have limited memory. Poor memory configuration, large objects, data skew, and excessive aggregation can lead to spills or out-of-memory errors.
+
+Data skew occurs when some partitions contain significantly more data than others. A skewed partition can create a straggler task while other executors finish early.
+
+Performance tuning should be based on execution metrics rather than assumptions. Spark UI metrics can be used to inspect stages, task duration, shuffle read, shuffle write, input size, and executor behavior.

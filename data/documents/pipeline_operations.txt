@@ -1,0 +1,15 @@
+A production data pipeline typically moves data through several stages including ingestion, validation, transformation, quality checks, and publishing.
+
+The ingestion stage reads data from source systems and records metadata such as source name, ingestion timestamp, batch identifier, and schema information.
+
+Validation checks whether the incoming data conforms to the expected schema and business rules. Invalid records can be quarantined instead of being allowed into downstream processing.
+
+Transformation converts raw data into business-ready structures. Common operations include filtering, joining dimension tables, deduplication, normalization, aggregation, and deriving calculated fields.
+
+A pipeline should maintain data quality checks at important processing boundaries. Examples include null checks, duplicate detection, referential integrity, row-count validation, and accepted-value checks.
+
+Production pipelines should also provide observability. Useful operational metadata includes pipeline status, processing duration, input row count, output row count, error count, and execution identifier.
+
+Incremental processing compares incoming data with previously processed data and processes only new or changed records. This can reduce unnecessary computation when source datasets are large.
+
+A reliable pipeline should be idempotent where possible. Re-running the same batch should not create unintended duplicate records or inconsistent output.

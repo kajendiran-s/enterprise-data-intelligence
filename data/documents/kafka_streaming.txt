@@ -1,0 +1,13 @@
+Apache Kafka is a distributed event streaming platform used to publish, store, and consume streams of records.
+
+Kafka organizes records into topics. Topics are divided into partitions, which provide parallelism and allow multiple consumers to process different partitions concurrently.
+
+Producers publish records to Kafka topics. Consumers read records from topics and track their progress using offsets.
+
+A consumer group allows multiple consumer instances to coordinate processing. Each partition is normally assigned to one consumer within a consumer group at a time.
+
+Kafka retains records according to configured retention policies. Consumers can process records at their own pace within the available retention period.
+
+Partitioning is important for Kafka scalability. Records with the same key are normally routed to the same partition, which can preserve ordering for that key.
+
+Kafka is commonly used as an ingestion layer for streaming data pipelines. Downstream systems can consume events and transform, enrich, validate, or store them.

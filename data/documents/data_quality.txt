@@ -1,0 +1,19 @@
+Data quality checks are used to identify incorrect, incomplete, inconsistent, or unexpected data before it affects downstream consumers.
+
+Completeness checks verify that required fields are populated and that expected records are present.
+
+Uniqueness checks detect duplicate values in columns that should contain unique identifiers.
+
+Validity checks verify that values conform to expected formats, ranges, or allowed categories.
+
+Referential integrity checks verify that foreign keys have corresponding records in related dimension or reference tables.
+
+Freshness checks determine whether data arrived within the expected time window.
+
+Row-count checks compare the number of records against expected thresholds or historical patterns.
+
+Data quality failures should be observable and actionable. A pipeline can record failed checks, affected datasets, batch identifiers, and error details.
+
+Quarantine mechanisms can isolate invalid records while allowing valid records to continue through the pipeline when the business process permits it.
+
+Quality metrics can also be used for monitoring trends over time, helping teams identify gradual deterioration in source data.

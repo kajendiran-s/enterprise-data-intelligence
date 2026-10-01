@@ -1,0 +1,136 @@
+{
+  "documents": [
+    {
+      "chunk_id": "data_quality_chunk_0",
+      "document_id": "data_quality",
+      "source": "data_quality.txt",
+      "text": "Data quality checks are used to identify incorrect, incomplete, inconsistent, or unexpected data before it affects downstream consumers.\n\nCompleteness checks verify that required fields are populated and that expected records are present.\n\nUniqueness checks detect duplicate values in columns that should contain unique identifiers.\n\nValidity checks verify that values conform to expected formats, ranges, or allowed categories.\n\nReferential integrity checks verify that foreign keys have corresponding records in related dimension or reference tables.\n\nFreshness checks determine whether data arrived within the expected time window.\n\nRow-count checks compare the number of records against expected thresholds or historical patterns.\n\nData quality failures should be observable and actionable. A pipeline can record failed checks, affected datasets, batch identifiers, and error details.\n\nQuarantine mechanisms can isolate invalid records while allowing valid records to continue through the pipelin",
+      "metadata": {
+        "chunk_index": 0,
+        "start_char": 0,
+        "end_char": 1000
+      }
+    },
+    {
+      "chunk_id": "data_quality_chunk_1",
+      "document_id": "data_quality",
+      "source": "data_quality.txt",
+      "text": "e when the business process permits it.\n\nQuality metrics can also be used for monitoring trends over time, helping teams identify gradual deterioration in source data.",
+      "metadata": {
+        "chunk_index": 1,
+        "start_char": 1000,
+        "end_char": 1168
+      }
+    },
+    {
+      "chunk_id": "kafka_streaming_chunk_0",
+      "document_id": "kafka_streaming",
+      "source": "kafka_streaming.txt",
+      "text": "Apache Kafka is a distributed event streaming platform used to publish, store, and consume streams of records.\n\nKafka organizes records into topics. Topics are divided into partitions, which provide parallelism and allow multiple consumers to process different partitions concurrently.\n\nProducers publish records to Kafka topics. Consumers read records from topics and track their progress using offsets.\n\nA consumer group allows multiple consumer instances to coordinate processing. Each partition is normally assigned to one consumer within a consumer group at a time.\n\nKafka retains records according to configured retention policies. Consumers can process records at their own pace within the available retention period.\n\nPartitioning is important for Kafka scalability. Records with the same key are normally routed to the same partition, which can preserve ordering for that key.\n\nKafka is commonly used as an ingestion layer for streaming data pipelines. Downstream systems can consume events",
+      "metadata": {
+        "chunk_index": 0,
+        "start_char": 0,
+        "end_char": 1000
+      }
+    },
+    {
+      "chunk_id": "kafka_streaming_chunk_1",
+      "document_id": "kafka_streaming",
+      "source": "kafka_streaming.txt",
+      "text": "and transform, enrich, validate, or store them.",
+      "metadata": {
+        "chunk_index": 1,
+        "start_char": 1000,
+        "end_char": 1048
+      }
+    },
+    {
+      "chunk_id": "pipeline_operations_chunk_0",
+      "document_id": "pipeline_operations",
+      "source": "pipeline_operations.txt",
+      "text": "A production data pipeline typically moves data through several stages including ingestion, validation, transformation, quality checks, and publishing.\n\nThe ingestion stage reads data from source systems and records metadata such as source name, ingestion timestamp, batch identifier, and schema information.\n\nValidation checks whether the incoming data conforms to the expected schema and business rules. Invalid records can be quarantined instead of being allowed into downstream processing.\n\nTransformation converts raw data into business-ready structures. Common operations include filtering, joining dimension tables, deduplication, normalization, aggregation, and deriving calculated fields.\n\nA pipeline should maintain data quality checks at important processing boundaries. Examples include null checks, duplicate detection, referential integrity, row-count validation, and accepted-value checks.\n\nProduction pipelines should also provide observability. Useful operational metadata includes p",
+      "metadata": {
+        "chunk_index": 0,
+        "start_char": 0,
+        "end_char": 1000
+      }
+    },
+    {
+      "chunk_id": "pipeline_operations_chunk_1",
+      "document_id": "pipeline_operations",
+      "source": "pipeline_operations.txt",
+      "text": "ipeline status, processing duration, input row count, output row count, error count, and execution identifier.\n\nIncremental processing compares incoming data with previously processed data and processes only new or changed records. This can reduce unnecessary computation when source datasets are large.\n\nA reliable pipeline should be idempotent where possible. Re-running the same batch should not create unintended duplicate records or inconsistent output.",
+      "metadata": {
+        "chunk_index": 1,
+        "start_char": 1000,
+        "end_char": 1459
+      }
+    },
+    {
+      "chunk_id": "snowflake_warehouse_chunk_0",
+      "document_id": "snowflake_warehouse",
+      "source": "snowflake_warehouse.txt",
+      "text": "Snowflake uses virtual warehouses to provide compute resources for executing SQL queries and data processing workloads.\n\nA virtual warehouse is a cluster of compute resources that can execute queries independently from Snowflake storage.\n\nWarehouse size controls the amount of compute available to a workload. Larger warehouses can provide more compute capacity but generally increase compute consumption.\n\nMulti-cluster warehouses can add clusters when concurrency increases. This is useful when many queries need to execute at the same time.\n\nWarehouse auto-suspend can stop an inactive warehouse after a configured period. Auto-resume can start it again when a new workload arrives.\n\nFor data engineering workloads, warehouse selection can be based on workload characteristics such as input data size, query complexity, concurrency, and execution requirements.\n\nA dynamic warehouse allocation strategy can map workload sizes to different warehouse configurations. For example, a small input batch",
+      "metadata": {
+        "chunk_index": 0,
+        "start_char": 0,
+        "end_char": 1000
+      }
+    },
+    {
+      "chunk_id": "snowflake_warehouse_chunk_1",
+      "document_id": "snowflake_warehouse",
+      "source": "snowflake_warehouse.txt",
+      "text": "can use a small warehouse while a large transformation workload can use a larger warehouse.\n\nQuery history and warehouse monitoring can be used to analyze execution time, resource consumption, and workload behavior.",
+      "metadata": {
+        "chunk_index": 1,
+        "start_char": 1000,
+        "end_char": 1216
+      }
+    },
+    {
+      "chunk_id": "spark_architecture_chunk_0",
+      "document_id": "spark_architecture",
+      "source": "spark_architecture.txt",
+      "text": "Apache Spark is a distributed data processing engine designed to process large datasets across a cluster.\n\nA Spark application consists of a driver process and executor processes. The driver coordinates the application, creates the execution plan, and schedules work. Executors run tasks assigned by the driver and store data for computation.\n\nWhen an action is triggered, Spark creates a job. The job is divided into stages based on shuffle boundaries. Stages are further divided into tasks. A task is the smallest unit of work sent to an executor.\n\nSpark uses partitions to divide a dataset into smaller pieces that can be processed in parallel. Each task normally operates on one partition. The scheduler assigns tasks to available executor cores.\n\nExecutors can run multiple tasks concurrently depending on the number of cores allocated to them. This parallel execution allows Spark to process large datasets across multiple machines.\n\nShuffle operations move data between executors. Operations s",
+      "metadata": {
+        "chunk_index": 0,
+        "start_char": 0,
+        "end_char": 1000
+      }
+    },
+    {
+      "chunk_id": "spark_architecture_chunk_1",
+      "document_id": "spark_architecture",
+      "source": "spark_architecture.txt",
+      "text": "uch as groupBy, join, and repartition can introduce shuffle boundaries and may require network and disk I/O.",
+      "metadata": {
+        "chunk_index": 1,
+        "start_char": 1000,
+        "end_char": 1109
+      }
+    },
+    {
+      "chunk_id": "spark_performance_chunk_0",
+      "document_id": "spark_performance",
+      "source": "spark_performance.txt",
+      "text": "Spark performance depends on partitioning, parallelism, serialization, memory usage, shuffle behavior, and the amount of data processed.\n\nPartitioning determines how data is distributed across tasks. Too few partitions can reduce parallelism, while too many small partitions can increase scheduling overhead.\n\nA shuffle occurs when Spark needs to redistribute data across executors. Large shuffles can become expensive because data may need to be serialized, transferred across the network, and written to disk.\n\nBroadcast joins can improve performance when one side of a join is small enough to be distributed to executors. This can avoid a large shuffle of the smaller dataset.\n\nCaching or persisting a DataFrame can help when the same computed dataset is reused multiple times. However, caching consumes executor memory and should be used selectively.\n\nSpark executors have limited memory. Poor memory configuration, large objects, data skew, and excessive aggregation can lead to spills or out-of",
+      "metadata": {
+        "chunk_index": 0,
+        "start_char": 0,
+        "end_char": 1000
+      }
+    },
+    {
+      "chunk_id": "spark_performance_chunk_1",
+      "document_id": "spark_performance",
+      "source": "spark_performance.txt",
+      "text": "-memory errors.\n\nData skew occurs when some partitions contain significantly more data than others. A skewed partition can create a straggler task while other executors finish early.\n\nPerformance tuning should be based on execution metrics rather than assumptions. Spark UI metrics can be used to inspect stages, task duration, shuffle read, shuffle write, input size, and executor behavior.",
+      "metadata": {
+        "chunk_index": 1,
+        "start_char": 1000,
+        "end_char": 1392
+      }
+    }
+  ]
+}

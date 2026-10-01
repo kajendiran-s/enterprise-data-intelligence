@@ -1,0 +1,9 @@
+google-genai
+python-dotenv
+pydantic
+pydantic-settings
+numpy
+qdrant-client
+fastapi
+uvicorn
+rank-bm25

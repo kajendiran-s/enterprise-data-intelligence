@@ -1,0 +1,11 @@
+Apache Spark is a distributed data processing engine designed to process large datasets across a cluster.
+
+A Spark application consists of a driver process and executor processes. The driver coordinates the application, creates the execution plan, and schedules work. Executors run tasks assigned by the driver and store data for computation.
+
+When an action is triggered, Spark creates a job. The job is divided into stages based on shuffle boundaries. Stages are further divided into tasks. A task is the smallest unit of work sent to an executor.
+
+Spark uses partitions to divide a dataset into smaller pieces that can be processed in parallel. Each task normally operates on one partition. The scheduler assigns tasks to available executor cores.
+
+Executors can run multiple tasks concurrently depending on the number of cores allocated to them. This parallel execution allows Spark to process large datasets across multiple machines.
+
+Shuffle operations move data between executors. Operations such as groupBy, join, and repartition can introduce shuffle boundaries and may require network and disk I/O.

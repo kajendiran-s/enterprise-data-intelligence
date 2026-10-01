@@ -1,0 +1,15 @@
+Snowflake uses virtual warehouses to provide compute resources for executing SQL queries and data processing workloads.
+
+A virtual warehouse is a cluster of compute resources that can execute queries independently from Snowflake storage.
+
+Warehouse size controls the amount of compute available to a workload. Larger warehouses can provide more compute capacity but generally increase compute consumption.
+
+Multi-cluster warehouses can add clusters when concurrency increases. This is useful when many queries need to execute at the same time.
+
+Warehouse auto-suspend can stop an inactive warehouse after a configured period. Auto-resume can start it again when a new workload arrives.
+
+For data engineering workloads, warehouse selection can be based on workload characteristics such as input data size, query complexity, concurrency, and execution requirements.
+
+A dynamic warehouse allocation strategy can map workload sizes to different warehouse configurations. For example, a small input batch can use a small warehouse while a large transformation workload can use a larger warehouse.
+
+Query history and warehouse monitoring can be used to analyze execution time, resource consumption, and workload behavior.
