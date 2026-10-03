@@ -35,11 +35,8 @@ class HybridRetriever:
 
         # Process dense results
         for rank, doc in enumerate(dense_results, start=1):
-
             doc_id = self._document_id(doc)
-
             if doc_id not in fused:
-
                 fused[doc_id] = {
                     **doc,
                     "dense_score": doc.get("score"),
@@ -47,22 +44,13 @@ class HybridRetriever:
                     "rrf_score": 0.0,
                     "retrieval_sources": set(),
                 }
-
-            fused[doc_id]["rrf_score"] += (
-                1 / (self.rrf_k + rank)
-            )
-
-            fused[doc_id]["retrieval_sources"].add(
-                "dense"
-            )
+            fused[doc_id]["rrf_score"] += (1 / (self.rrf_k + rank))
+            fused[doc_id]["retrieval_sources"].add("dense")
 
         # Process BM25 results
         for rank, doc in enumerate(bm25_results, start=1):
-
             doc_id = self._document_id(doc)
-
             if doc_id not in fused:
-
                 fused[doc_id] = {
                     **doc,
                     "dense_score": None,
@@ -70,60 +58,32 @@ class HybridRetriever:
                     "rrf_score": 0.0,
                     "retrieval_sources": set(),
                 }
-
             else:
                 fused[doc_id]["bm25_score"] = doc.get("score")
+            fused[doc_id]["rrf_score"] += (1 / (self.rrf_k + rank))
+            fused[doc_id]["retrieval_sources"].add("bm25")
 
-            fused[doc_id]["rrf_score"] += (
-                1 / (self.rrf_k + rank)
-            )
-
-            fused[doc_id]["retrieval_sources"].add(
-                "bm25"
-            )
-
-        results = sorted(
-            fused.values(),
-            key=lambda x: x["rrf_score"],
-            reverse=True,
-        )
+        results = sorted(fused.values(),key=lambda x: x["rrf_score"],reverse=True)
 
         for result in results:
-
-            result["retrieval_sources"] = sorted(
-                result["retrieval_sources"]
-            )
+            result["retrieval_sources"] = sorted(result["retrieval_sources"])
             result["score"] = result["rrf_score"]
             result.pop("retrieval_type", None)
 
         return results[:final_top_k]
 
-    def search(
-        self,
-        query: str,
-        candidate_k:int=20,
-        top_k: int | None = 5,
-    ) -> list[dict]:
+    def search(self,query: str,candidate_k:int=20,top_k: int | None = 5,) -> list[dict]:
         if top_k is None:
             top_k = self.final_top_k
-
-        # 1. Dense retrieval
         query_embedding = (self.embedding_model.embed_query(query))
-
         dense_results = self.vector_store.search( query_embedding, self.dense_top_k,)
-
-        # 2. BM25 retrieval
         bm25_results = self.bm25.search(query, self.sparse_top_k,)
-
-        # 3. RRF fusion
-        hybrid_results = self._rrf_fusion(
-            dense_results=dense_results,
-            bm25_results=bm25_results,
-            final_top_k=top_k,
-        )[:candidate_k]
+        hybrid_results = self._rrf_fusion(dense_results=dense_results,bm25_results=bm25_results,final_top_k=candidate_k)
 
         if self.reranker is not None:
              hybrid_results = self.reranker.rerank(query=query, documents=hybrid_results, top_k=top_k)
+        else:
+            hybrid_results = hybrid_results[:top_k]
 
         return hybrid_results
 

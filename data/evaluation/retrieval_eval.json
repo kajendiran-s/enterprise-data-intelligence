@@ -1,0 +1,114 @@
+[
+  {
+    "query": "How does Spark distribute work across executors?",
+    "relevant_chunk_ids": ["spark_architecture_chunk_0"]
+  },
+  {
+    "query": "What is the role of the Spark driver?",
+    "relevant_chunk_ids": ["spark_architecture_chunk_0"]
+  },
+  {
+    "query": "How are Spark jobs divided into stages and tasks?",
+    "relevant_chunk_ids": ["spark_architecture_chunk_0"]
+  },
+  {
+    "query": "What causes a shuffle in Spark?",
+    "relevant_chunk_ids": [
+      "spark_architecture_chunk_0",
+      "spark_architecture_chunk_1"
+    ]
+  },
+  {
+    "query": "What is the smallest unit of work sent to a Spark executor?",
+    "relevant_chunk_ids": ["spark_architecture_chunk_0"]
+  },
+  {
+    "query": "How do Spark partitions enable parallel processing?",
+    "relevant_chunk_ids": ["spark_architecture_chunk_0"]
+  },
+  {
+    "query": "How does partitioning affect Spark performance?",
+    "relevant_chunk_ids": ["spark_performance_chunk_0"]
+  },
+  {
+    "query": "Why can having too many Spark partitions reduce performance?",
+    "relevant_chunk_ids": ["spark_performance_chunk_0"]
+  },
+  {
+    "query": "Why are Spark shuffle operations expensive?",
+    "relevant_chunk_ids": [
+      "spark_architecture_chunk_0",
+      "spark_performance_chunk_0"
+    ]
+  },
+  {
+    "query": "How can broadcast joins improve Spark performance?",
+    "relevant_chunk_ids": ["spark_performance_chunk_0"]
+  },
+  {
+    "query": "What Spark metrics can be used to investigate slow tasks?",
+    "relevant_chunk_ids": ["spark_performance_chunk_1"]
+  },
+  {
+    "query": "What are the different types of data quality checks?",
+    "relevant_chunk_ids": ["data_quality_chunk_0"]
+  },
+  {
+    "query": "How can a pipeline handle invalid records without stopping valid records?",
+    "relevant_chunk_ids": [
+      "data_quality_chunk_0",
+      "data_quality_chunk_1"
+    ]
+  },
+  {
+    "query": "What information should be recorded when a data quality check fails?",
+    "relevant_chunk_ids": ["data_quality_chunk_0"]
+  },
+  {
+    "query": "How can data quality metrics be monitored over time?",
+    "relevant_chunk_ids": ["data_quality_chunk_1"]
+  },
+  {
+    "query": "What are the main stages of a production data pipeline?",
+    "relevant_chunk_ids": ["pipeline_operations_chunk_0"]
+  },
+  {
+    "query": "How does a production data pipeline handle invalid records?",
+    "relevant_chunk_ids": ["pipeline_operations_chunk_0"]
+  },
+  {
+    "query": "What metadata should be captured for pipeline observability?",
+    "relevant_chunk_ids": ["pipeline_operations_chunk_0"]
+  },
+  {
+    "query": "How does incremental processing reduce unnecessary computation?",
+    "relevant_chunk_ids": ["pipeline_operations_chunk_1"]
+  },
+  {
+    "query": "What does idempotency mean in a data pipeline?",
+    "relevant_chunk_ids": ["pipeline_operations_chunk_1"]
+  },
+  {
+    "query": "How does Kafka provide parallelism for consumers?",
+    "relevant_chunk_ids": ["kafka_streaming_chunk_0"]
+  },
+  {
+    "query": "How do Kafka consumer groups process partitions?",
+    "relevant_chunk_ids": ["kafka_streaming_chunk_0"]
+  },
+  {
+    "query": "How does Kafka preserve ordering for messages with the same key?",
+    "relevant_chunk_ids": ["kafka_streaming_chunk_0"]
+  },
+  {
+    "query": "How can Snowflake dynamically allocate compute resources based on workload size?",
+    "relevant_chunk_ids": [
+      "snowflake_warehouse_chunk_0",
+      "snowflake_warehouse_chunk_1"
+    ]
+  },
+  {
+    "query": "What factors should determine Snowflake warehouse selection?",
+    "relevant_chunk_ids": ["snowflake_warehouse_chunk_0"]
+  }
+]
