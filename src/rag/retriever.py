@@ -7,11 +7,11 @@ from src.retrieval.reranker import Reranker
 class Retriever:
 
     def __init__(self,
-        vector_store=VectorStore(),
-        bm25_retriever=BM25Retriever(),
-        embedding_model=GeminiEmbeddingService(),
-        hybrid=HybridRetriever(),
-        reranker=Reranker(),
+        # vector_store=VectorStore(),
+        # bm25_retriever=BM25Retriever(),
+        # embedding_model=GeminiEmbeddingService(),
+        # hybrid=HybridRetriever(),
+        # reranker=Reranker(),
         dense_top_k: int = 20,
         sparse_top_k: int = 20,
         final_top_k: int = 5,
@@ -28,7 +28,8 @@ class Retriever:
     def retrieve(
             self,
             query:str,
-            top_k:int = 5
+            candidate_k:int = 20,
+            top_k:int=5
     ):
         results = self.hybrid.search(query, top_k=top_k,)
 

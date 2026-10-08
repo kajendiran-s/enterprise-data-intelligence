@@ -25,6 +25,6 @@ class RAGpipeline:
 
 
         context_result = self.context_builder.build( documents)
-        generated = self.generator.generate(question=question,context=context_result["context"])
+        generated = self.generator.generate(query=question,context=context_result["context"])
         sources = self._resolve_citations(generated.citations,context_result["sources"])
         return { "answer": generated.answer, "sources": sources, "citations": generated.citations}

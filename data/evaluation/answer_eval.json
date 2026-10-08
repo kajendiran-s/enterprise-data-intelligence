@@ -1,0 +1,331 @@
+[
+  {
+    "query": "How does Spark distribute work across executors?",
+    "reference_answer": "The Spark driver coordinates the application and schedules tasks to executors. The dataset is divided into partitions, and tasks process those partitions in parallel on executor cores.",
+    "required_concepts": [
+      "driver coordinates the application",
+      "tasks are assigned to executors",
+      "data is divided into partitions",
+      "tasks process partitions in parallel"
+    ],
+    "relevant_chunk_ids": [
+      "spark_architecture_chunk_0"
+    ]
+  },
+  {
+    "query": "What is the role of the Spark driver?",
+    "reference_answer": "The Spark driver coordinates the application, creates the execution plan, and schedules work for executors.",
+    "required_concepts": [
+      "coordinates the application",
+      "creates the execution plan",
+      "schedules work for executors"
+    ],
+    "relevant_chunk_ids": [
+      "spark_architecture_chunk_0"
+    ]
+  },
+  {
+    "query": "How are Spark jobs divided into stages and tasks?",
+    "reference_answer": "A Spark action triggers a job. The job is divided into stages based on shuffle boundaries, and each stage is divided into tasks. Tasks are the smallest units of work sent to executors.",
+    "required_concepts": [
+      "action triggers a job",
+      "jobs are divided into stages",
+      "shuffle boundaries separate stages",
+      "stages are divided into tasks"
+    ],
+    "relevant_chunk_ids": [
+      "spark_architecture_chunk_0"
+    ]
+  },
+  {
+    "query": "What causes a shuffle in Spark?",
+    "reference_answer": "Shuffle occurs when data must be redistributed between executors. Operations such as groupBy, join, and repartition can introduce shuffle boundaries and require network or disk I/O.",
+    "required_concepts": [
+      "data is redistributed between executors",
+      "groupBy can cause shuffle",
+      "join can cause shuffle",
+      "repartition can cause shuffle",
+      "shuffle can require network or disk I/O"
+    ],
+    "relevant_chunk_ids": [
+      "spark_architecture_chunk_0",
+      "spark_architecture_chunk_1"
+    ]
+  },
+  {
+    "query": "What is the smallest unit of work sent to a Spark executor?",
+    "reference_answer": "A task is the smallest unit of work sent to a Spark executor. Each task normally operates on one partition.",
+    "required_concepts": [
+      "task is the smallest unit",
+      "task is sent to an executor",
+      "task normally operates on one partition"
+    ],
+    "relevant_chunk_ids": [
+      "spark_architecture_chunk_0"
+    ]
+  },
+  {
+    "query": "How do Spark partitions enable parallel processing?",
+    "reference_answer": "Partitions divide a dataset into pieces that can be processed independently. Spark creates tasks for partitions and runs those tasks in parallel across available executor cores.",
+    "required_concepts": [
+      "partitions divide the dataset",
+      "tasks operate on partitions",
+      "tasks run in parallel",
+      "executors provide cores for concurrent tasks"
+    ],
+    "relevant_chunk_ids": [
+      "spark_architecture_chunk_0"
+    ]
+  },
+  {
+    "query": "How does partitioning affect Spark performance?",
+    "reference_answer": "Partitioning controls how data is distributed across tasks. Too few partitions can reduce parallelism, while too many small partitions can increase scheduling overhead.",
+    "required_concepts": [
+      "partitioning controls data distribution",
+      "too few partitions reduce parallelism",
+      "too many partitions increase scheduling overhead"
+    ],
+    "relevant_chunk_ids": [
+      "spark_performance_chunk_0"
+    ]
+  },
+  {
+    "query": "Why can having too many Spark partitions reduce performance?",
+    "reference_answer": "Too many small Spark partitions can increase task scheduling overhead, which can reduce overall performance.",
+    "required_concepts": [
+      "small partitions create more tasks",
+      "scheduling overhead increases",
+      "overall performance can decrease"
+    ],
+    "relevant_chunk_ids": [
+      "spark_performance_chunk_0"
+    ]
+  },
+  {
+    "query": "Why are Spark shuffle operations expensive?",
+    "reference_answer": "Shuffle can be expensive because data must be redistributed across executors and may require serialization, network transfer, and disk I/O.",
+    "required_concepts": [
+      "data redistribution",
+      "serialization",
+      "network I/O",
+      "disk I/O"
+    ],
+    "relevant_chunk_ids": [
+      "spark_architecture_chunk_0",
+      "spark_performance_chunk_0"
+    ]
+  },
+  {
+    "query": "How can broadcast joins improve Spark performance?",
+    "reference_answer": "A broadcast join can improve Spark performance when one side of the join is small enough to broadcast, reducing the need for a large data shuffle.",
+    "required_concepts": [
+      "one join side is small",
+      "small side can be broadcast",
+      "broadcast joins can improve performance",
+      "can reduce large data movement"
+    ],
+    "relevant_chunk_ids": [
+      "spark_performance_chunk_0"
+    ]
+  },
+  {
+    "query": "What Spark metrics can be used to investigate slow tasks?",
+    "reference_answer": "Spark UI metrics such as stage and task duration, shuffle read and write, input size, and executor behavior can help investigate slow tasks and performance problems.",
+    "required_concepts": [
+      "Spark UI",
+      "task duration",
+      "shuffle read/write",
+      "input size",
+      "executor behavior"
+    ],
+    "relevant_chunk_ids": [
+      "spark_performance_chunk_1"
+    ]
+  },
+  {
+    "query": "What are the different types of data quality checks?",
+    "reference_answer": "Common data quality checks include completeness, uniqueness, validity, referential integrity, freshness, and row-count checks.",
+    "required_concepts": [
+      "completeness",
+      "uniqueness",
+      "validity",
+      "referential integrity",
+      "freshness",
+      "row-count checks"
+    ],
+    "relevant_chunk_ids": [
+      "data_quality_chunk_0"
+    ]
+  },
+  {
+    "query": "How can a pipeline handle invalid records without stopping valid records?",
+    "reference_answer": "A pipeline can use a quarantine mechanism to isolate invalid records while allowing valid records to continue through the pipeline.",
+    "required_concepts": [
+      "invalid records are isolated",
+      "quarantine mechanism",
+      "valid records continue"
+    ],
+    "relevant_chunk_ids": [
+      "data_quality_chunk_0",
+      "data_quality_chunk_1"
+    ]
+  },
+  {
+    "query": "What information should be recorded when a data quality check fails?",
+    "reference_answer": "A quality failure should be observable and actionable by recording the failed check, affected dataset, batch ID, and relevant error details.",
+    "required_concepts": [
+      "failed check",
+      "affected dataset",
+      "batch ID",
+      "error details"
+    ],
+    "relevant_chunk_ids": [
+      "data_quality_chunk_0"
+    ]
+  },
+  {
+    "query": "How can data quality metrics be monitored over time?",
+    "reference_answer": "Data quality metrics can be tracked over time to monitor trends and identify changes or degradation in data quality.",
+    "required_concepts": [
+      "quality metrics",
+      "tracked over time",
+      "monitor trends"
+    ],
+    "relevant_chunk_ids": [
+      "data_quality_chunk_1"
+    ]
+  },
+  {
+    "query": "What are the main stages of a production data pipeline?",
+    "reference_answer": "A production data pipeline commonly includes ingestion, validation, transformation, data quality checks, and publishing.",
+    "required_concepts": [
+      "ingestion",
+      "validation",
+      "transformation",
+      "data quality checks",
+      "publishing"
+    ],
+    "relevant_chunk_ids": [
+      "pipeline_operations_chunk_0"
+    ]
+  },
+  {
+    "query": "How does a production data pipeline handle invalid records?",
+    "reference_answer": "During validation, invalid records can be identified and quarantined so that valid records can continue through the pipeline.",
+    "required_concepts": [
+      "validation identifies invalid records",
+      "invalid records can be quarantined",
+      "valid records continue"
+    ],
+    "relevant_chunk_ids": [
+      "pipeline_operations_chunk_0"
+    ]
+  },
+  {
+    "query": "What metadata should be captured for pipeline observability?",
+    "reference_answer": "Pipeline observability can include status, duration, input and output row counts, error counts, and an execution ID.",
+    "required_concepts": [
+      "pipeline status",
+      "duration",
+      "input row count",
+      "output row count",
+      "error count",
+      "execution ID"
+    ],
+    "relevant_chunk_ids": [
+      "pipeline_operations_chunk_0",
+      "pipeline_operations_chunk_1"
+    ]
+  },
+  {
+    "query": "How does incremental processing reduce unnecessary computation?",
+    "reference_answer": "Incremental processing compares incoming data with previously processed data and processes only new or changed records, avoiding unnecessary computation.",
+    "required_concepts": [
+      "compares incoming data",
+      "previously processed data",
+      "processes new records",
+      "processes changed records",
+      "avoids unnecessary computation"
+    ],
+    "relevant_chunk_ids": [
+      "pipeline_operations_chunk_1"
+    ]
+  },
+  {
+    "query": "What does idempotency mean in a data pipeline?",
+    "reference_answer": "Idempotency means that rerunning the same batch should not create unintended duplicates or inconsistent output.",
+    "required_concepts": [
+      "rerunning the same batch",
+      "no unintended duplicates",
+      "no inconsistent output"
+    ],
+    "relevant_chunk_ids": [
+      "pipeline_operations_chunk_1"
+    ]
+  },
+  {
+    "query": "How does Kafka provide parallelism for consumers?",
+    "reference_answer": "Kafka topics are divided into partitions, allowing consumers in a consumer group to process different partitions in parallel. At a given time, one consumer in the group reads a particular partition.",
+    "required_concepts": [
+      "topics are divided into partitions",
+      "consumer groups",
+      "different partitions processed in parallel",
+      "one consumer reads a partition at a time"
+    ],
+    "relevant_chunk_ids": [
+      "kafka_streaming_chunk_0"
+    ]
+  },
+  {
+    "query": "How do Kafka consumer groups process partitions?",
+    "reference_answer": "Consumers in the same Kafka consumer group coordinate to process partitions, with one consumer assigned to a partition at a time.",
+    "required_concepts": [
+      "consumer groups coordinate consumers",
+      "partitions are assigned to consumers",
+      "one consumer per partition at a time"
+    ],
+    "relevant_chunk_ids": [
+      "kafka_streaming_chunk_0"
+    ]
+  },
+  {
+    "query": "How does Kafka preserve ordering for messages with the same key?",
+    "reference_answer": "Kafka normally routes messages with the same key to the same partition, which preserves ordering for that key within the partition.",
+    "required_concepts": [
+      "same key",
+      "same partition",
+      "ordering preserved for the key"
+    ],
+    "relevant_chunk_ids": [
+      "kafka_streaming_chunk_0"
+    ]
+  },
+  {
+    "query": "How can Snowflake dynamically allocate compute resources based on workload size?",
+    "reference_answer": "Snowflake warehouse selection can be mapped to workload characteristics such as input size and query complexity. Smaller workloads can use smaller warehouses while larger transformations can use larger warehouses.",
+    "required_concepts": [
+      "warehouse selection based on workload",
+      "input size",
+      "query complexity",
+      "smaller workloads use smaller warehouses",
+      "larger workloads use larger warehouses"
+    ],
+    "relevant_chunk_ids": [
+      "snowflake_warehouse_chunk_0",
+      "snowflake_warehouse_chunk_1"
+    ]
+  },
+  {
+    "query": "What factors should determine Snowflake warehouse selection?",
+    "reference_answer": "Snowflake warehouse selection can consider input size, query complexity, concurrency, and execution requirements.",
+    "required_concepts": [
+      "input size",
+      "query complexity",
+      "concurrency",
+      "execution requirements"
+    ],
+    "relevant_chunk_ids": [
+      "snowflake_warehouse_chunk_0"
+    ]
+  }
+]
