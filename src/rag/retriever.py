@@ -1,4 +1,4 @@
-from src.embeddings.service import GeminiEmbeddingService
+from src.embeddings.service import NomicEmbeddingService
 from src.retrieval.vector_store import VectorStore
 from src.retrieval.bm25 import BM25Retriever
 from src.retrieval.hybrid import HybridRetriever
@@ -16,7 +16,7 @@ class Retriever:
         sparse_top_k: int = 20,
         final_top_k: int = 5,
         rrf_k: int = 60):
-        self.embedder = GeminiEmbeddingService()
+        self.embedder = NomicEmbeddingService()
         self.vector_store = VectorStore()
         self.bm25 = BM25Retriever()
         self.reranker = Reranker()
